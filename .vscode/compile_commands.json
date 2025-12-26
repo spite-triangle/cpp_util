@@ -1,0 +1,6 @@
+[
+{
+  "directory": "e:\\workspace\\cpp",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-o", "build\\.objs\\test\\windows\\x64\\release\\src\\main.cpp.obj", "src\\main.cpp"],
+  "file": "src\\main.cpp"
+}]
