@@ -50,6 +50,8 @@ TEST_CASE("defer"){
   - `ltrim` / `rtrim` / `trims`：去除字符串左/右/两端空白。
 - **字符串转数值**
   - `toNumber`：将字符串安全转换为各种数值类型。
+- **可视化**
+  - `dumpBinary`: 将二进制内存转换为字符串，便于调试
 
 ## 平台支持
 - Windows：使用 Windows API 进行编码转换。

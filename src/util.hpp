@@ -38,14 +38,14 @@ struct _DeferImpl: public _DeferBase{
     Defer _defer;
 };
 
-struct _RaiiDefer{
+struct RaiiDefer{
     template<class Defer>
-    _RaiiDefer(Defer && defer) : _base{ new _DeferImpl(std::move(defer))} {}
-    ~_RaiiDefer(){ if (_base != nullptr) delete _base; }
+    RaiiDefer(Defer && defer) : _base{ new _DeferImpl(std::move(defer))} {}
+    ~RaiiDefer(){ if (_base != nullptr) delete _base; }
     _DeferBase* _base = nullptr;
 };
 }
-#define RAII_DEFER(_defer) util::_RaiiDefer CONCAT(_raii_defer_, __LINE__)([&](){_defer})
+#define RAII_DEFER(_defer) util::RaiiDefer CONCAT(_raii_defer_, __LINE__)([&](){_defer})
 
 
 namespace util
@@ -425,6 +425,48 @@ inline bool toNumber(const std::string& str, Number& value) {
     } catch (...) {
         return false;
     }
+}
+
+/* 打印二进制 */
+inline std::string dumpBinary(const uint8_t * pointer, size_t uLen){
+    size_t cursor = 0;
+    std::ostringstream os;
+    while (cursor < uLen)
+    {
+        int i;
+        int thisline = (std::min)(uLen - cursor, 16ULL);
+
+        os << std::setw(8) << std::setfill('0') << std::hex << cursor << " ";
+
+        for (i = 0; i < thisline; i++)
+        {
+            os << std::setw(2) << std::setfill('0') << std::hex << (uint32_t)pointer[i] << " "; 
+        }
+
+        for (; i < 16; i++)
+        {
+            os << "   ";
+        }
+
+        for (i = 0; i < thisline; i++)
+        {
+            if(pointer[i] >= 0x20 && pointer[i] < 0x7f){
+                os << pointer[i];
+            }else{
+                os << '.';
+            }
+        }
+
+        os << std::endl;
+        cursor += thisline;
+        pointer += thisline;
+    }
+
+    return os.str();
+}
+
+inline std::string dumpBinary(const char * pointer, size_t uLen){
+    return dumpBinary(reinterpret_cast<const uint8_t*>(pointer), uLen);
 }
 
 } // namespace util
