@@ -1,6 +1,26 @@
 [
 {
-  "directory": "e:\\workspace\\cpp",
-  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-o", "build\\.objs\\test\\windows\\x64\\release\\src\\main.cpp.obj", "src\\main.cpp"],
+  "directory": "d:\\notebooks\\cpp_util",
+  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-Isrc", "-fexceptions", "-std=c++11", "-DNDEBUG", "-o", "build\\.objs\\test\\windows\\x64\\release\\src\\main.cpp.obj", "src\\main.cpp"],
   "file": "src\\main.cpp"
+},
+{
+  "directory": "d:\\notebooks\\cpp_util",
+  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-Isrc", "-fexceptions", "-std=c++11", "-DNDEBUG", "-o", "build\\.objs\\test\\windows\\x64\\release\\src\\test_macro.cpp.obj", "src\\test_macro.cpp"],
+  "file": "src\\test_macro.cpp"
+},
+{
+  "directory": "d:\\notebooks\\cpp_util",
+  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-Isrc", "-fexceptions", "-std=c++11", "-DNDEBUG", "-o", "build\\.objs\\test\\windows\\x64\\release\\src\\test_optional.cpp.obj", "src\\test_optional.cpp"],
+  "file": "src\\test_optional.cpp"
+},
+{
+  "directory": "d:\\notebooks\\cpp_util",
+  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-Isrc", "-fexceptions", "-std=c++11", "-DNDEBUG", "-o", "build\\.objs\\test\\windows\\x64\\release\\src\\test_queue.cpp.obj", "src\\test_queue.cpp"],
+  "file": "src\\test_queue.cpp"
+},
+{
+  "directory": "d:\\notebooks\\cpp_util",
+  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-O3", "-Isrc", "-fexceptions", "-std=c++11", "-DNDEBUG", "-o", "build\\.objs\\test\\windows\\x64\\release\\src\\test_string.cpp.obj", "src\\test_string.cpp"],
+  "file": "src\\test_string.cpp"
 }]

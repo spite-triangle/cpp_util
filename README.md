@@ -3,6 +3,9 @@
 `util.hpp` 是一个 C++ 实用工具头文件，适用于跨平台（Windows/Linux）开发
 - `defer` 资源释放
 - 字符串实用功能
+- 提供 `python like` 的内置异常
+- 常用线程安全的数据结构
+- 简易的 `optional` 实现，可与 `std::optional` 互换
 
 ## 功能介绍
 
@@ -28,6 +31,9 @@ TEST_CASE("defer"){
     */
 }
 ```
+### 通用工具
+
+- `util::Singleton`: 快速单列
 
 ### 字符串处理
 
@@ -52,6 +58,83 @@ TEST_CASE("defer"){
   - `toNumber`：将字符串安全转换为各种数值类型。
 - **可视化**
   - `dumpBinary`: 将二进制内存转换为字符串，便于调试
+
+### 异常
+
+```txt
+BaseException
+ └── Exception
+      ├── ArithmeticError
+      │    ├── FloatingPointError
+      │    ├── OverflowError
+      │    └── ZeroDivisionError
+      ├── AssertionError
+      ├── AttributeError
+      ├── BufferError
+      ├── EOFError
+      ├── ImportError
+      │    └── ModuleNotFoundError
+      ├── LookupError
+      │    ├── IndexError
+      │    └── KeyError
+      ├── MemoryError
+      ├── NameError
+      │    └── UnboundLocalError
+      ├── OSError
+      │    ├── BlockingIOError
+      │    ├── ChildProcessError
+      │    ├── ConnectionError
+      │    │    ├── BrokenPipeError
+      │    │    ├── ConnectionAbortedError
+      │    │    ├── ConnectionRefusedError
+      │    │    └── ConnectionResetError
+      │    ├── FileExistsError
+      │    ├── FileNotFoundError
+      │    ├── InterruptedError
+      │    ├── IsADirectoryError
+      │    ├── NotADirectoryError
+      │    ├── PermissionError
+      │    ├── ProcessLookupError
+      │    └── TimeoutError
+      ├── ReferenceError
+      ├── RuntimeError
+      │    ├── NotImplementedError
+      │    ├── PythonFinalizationError
+      │    └── RecursionError
+      ├── StopAsyncIteration
+      ├── StopIteration
+      ├── SyntaxError
+      │    └── IndentationError
+      │         └── TabError
+      ├── SystemError
+      ├── TypeError
+      └── ValueError
+        └── UnicodeError
+            ├── UnicodeDecodeError
+            ├── UnicodeEncodeError
+            └── UnicodeTranslateError
+```
+
+### optional
+
+```cpp
+TEST_CASE("optional"){
+    util::optional<int> opt1;
+    CHECK(opt1.has_value() == false);
+    CHECK(opt1 == util::nullopt);
+
+    opt1.emplace(1);
+    CHECK(opt1.has_value() == true);
+
+    util::optional<int> opt2(1);
+    CHECK(opt1 == opt2);
+}
+```
+
+### 数据结构
+
+- `util::SafeLinkQueue` : 线程安全队列
+
 
 ## 平台支持
 - Windows：使用 Windows API 进行编码转换。
@@ -79,7 +162,7 @@ int main() {
 ```
 
 ## 依赖
-- C++11 及以上
+- `c++11` 及以上
 - Windows: `<windows.h>`
 - Linux: `<iconv.h>`
 
