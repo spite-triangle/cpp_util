@@ -71,6 +71,16 @@ TEST_CASE("startWith/endWith/contain_regex")
     CHECK_FALSE(contain("abcdef", std::regex("gh")));
 }
 
+TEST_CASE("removeSuffix/removePrefix")
+{
+    CHECK(removePrefix("abcdeg","ab") == "cdeg");
+    CHECK_FALSE(removePrefix("abcdeg","a") == "cdeg");
+
+    CHECK(removeSuffix("abcdeg","deg") == "abc");
+    CHECK_FALSE(removeSuffix("abcdeg","Deg") == "abc");
+
+}
+
 TEST_CASE("repleace_regex")
 {
     std::regex re_b("b+");

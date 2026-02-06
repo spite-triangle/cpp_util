@@ -1016,6 +1016,21 @@ inline bool contain(const std::string& str, const std::regex & regex) {
     return std::regex_search(str, regex);
 }
 
+inline std::string removeSuffix(const std::string& str, const std::string & suffix, bool caseSensitive = true){
+    if (endWith(str, suffix, caseSensitive)){
+        return str.substr(0, str.length() - suffix.length());
+    }else {
+        return str;
+    }
+}
+
+inline std::string removePrefix(const std::string& str, const std::string & prefix, bool caseSensitive = true){
+    if (startWith(str, prefix, caseSensitive)){
+        return str.substr(prefix.size(), str.length() - prefix.length());
+    }else {
+        return str;
+    }
+}
 
 inline std::string repleace(const std::string& str, const std::string& from, const std::string& to, bool all = false) {
     if (from.empty()) return str;
