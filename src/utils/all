@@ -1,0 +1,11 @@
+#ifndef ALL
+#define ALL
+
+#include "utilCommon.hpp"
+#include "utilException.hpp"
+#include "utilOptional.hpp"
+#include "utilContainer.hpp"
+#include "utilString.hpp"
+#include "utilCancellation.hpp"
+
+#endif /* ALL */

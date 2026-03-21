@@ -135,6 +135,51 @@ TEST_CASE("optional"){
 
 - `util::SafeLinkQueue` : 线程安全队列
 
+### Cancelation
+
+仿照 `vscode` 中组件实现，可实现复杂任务流程的取消
+
+```cpp
+TEST_CASE("cancellation_parallel"){
+    // 取消 token 管理器
+    auto tokenSource = std::make_shared<util::CancellationTokenSource>();
+
+    // 线程任务 1
+    auto t1 = std::thread([tokenSource](){
+        auto token = tokenSource->token();
+
+        token->onCancellationRequested([&](){
+            std::cout << "Cancellation requested in thread 1" << std::endl;
+        });
+
+        while (!token->isCancellationRequested()) {
+            std::cout << "Thread 1 is running..." << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+    });
+
+    // 线程任务 2
+    auto t2 = std::thread([tokenSource](){
+        auto token = tokenSource->token();
+        while (!token->isCancellationRequested()) {
+            std::cout << "Thread 2 is running..." << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+    });
+
+    tokenSource->token()->onCancellationRequested([&](){
+        std::cout << "Cancellation requested in main thread" << std::endl;
+    });
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    // 取消任务
+    tokenSource->cancel();
+
+    t1.join();
+    t2.join();
+}
+```
 
 ## 平台支持
 - Windows：使用 Windows API 进行编码转换。

@@ -1,6 +1,6 @@
 #include "doctest.h"
 
-#include "util.hpp"
+#include "utils/all"
 
 TEST_CASE("optional"){
     util::optional<int> opt1;

@@ -1,6 +1,6 @@
 #include "doctest.h"
 
-#include "util.hpp"
+#include "utils/all"
 
 TEST_CASE("queue"){
     util::SafeLinkQueue<int> queue;

@@ -1,6 +1,6 @@
 #include "doctest.h"
 
-#include "util.hpp"
+#include "utils/all"
 #include <iostream>
 
 using namespace util;
