@@ -4,8 +4,12 @@
             "pattern": "{build,Build,BUILD,out,Out,OUT,bin}/**/*{test,Test,TEST}*",
             "cwd": "${workspaceFolder}/bin",
             "doctest": {
-                "ignoreTestEnumerationStdErr": true
+                "ignoreTestEnumerationStdErr": true,
+                "prependTestRunningArgs": [
+                    "-s"
+                ]
             }
         }
     ]
+
 }

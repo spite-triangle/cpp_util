@@ -6,6 +6,7 @@ add_cxflags("-O0","-g")
 -- 设置 mingw 为编译链
 if is_host("windows") then
     set_toolchains("mingw")
+    add_links("dbghelp", "imagehlp")
 end
 
 add_rules("mode.debug","mode.release")

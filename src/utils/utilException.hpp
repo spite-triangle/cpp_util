@@ -3,30 +3,54 @@
 
 
 #include <string>
+#include <sstream>
 #include <exception>
+
+// https://github.com/bombela/backward-cpp
+#include "backward.hpp"
 
 namespace util
 {
 
 // Exception hierarchy (Python-like exceptions mapped to C++)
 // Skipped: BaseExceptionGroup, GeneratorExit, KeyboardInterrupt, SystemExit (Python-specific)
-// Aliased from stdexcept: logic_error, runtime_error, etc.
 
-using BaseException = std::exception;
-
-class Exception : public std::exception{
-
+class BaseException : public std::exception{
 public:
-    Exception() : std::exception(), m_message("") {}
-    Exception(const std::string & msg): std::exception(), m_message(msg) {}
-    virtual ~Exception() = default;
+    BaseException() : std::exception(), m_message("") {
+        m_stack.load_here();
+    }
+    BaseException(const std::string & msg): std::exception(), m_message(msg) {
+        m_stack.load_here();
+    }
+    virtual ~BaseException() = default;
     
     virtual const char* what() const noexcept {
         return m_message.c_str();
     }
 
+    const backward::StackTrace & stack() const {
+        return m_stack;
+    }
+
+    std::string detail() const{
+        std::stringstream ss;
+        ss << "error: " << m_message << std::endl;
+
+        backward::Printer p;
+        p.reverse = true;
+        p.print(m_stack, ss);
+        return ss.str();
+    }
+ 
 protected:
     std::string m_message;
+    backward::StackTrace m_stack;
+};
+
+class Exception : public BaseException{
+public:
+    Exception(const std::string & msg): BaseException(msg) {}
 };
 
 

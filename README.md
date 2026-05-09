@@ -61,6 +61,8 @@ TEST_CASE("defer"){
 
 ### 异常
 
+仿照 `python` 结构定义异常，并基于 [https://github.com/bombela/backward-cpp](https://github.com/bombela/backward-cpp) 实现堆栈信息追踪
+
 ```txt
 BaseException
  └── Exception
