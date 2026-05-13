@@ -6,8 +6,10 @@
 #include <sstream>
 #include <exception>
 
+#ifndef DISABLE_STACK_TRACE
 // https://github.com/bombela/backward-cpp
 #include "backward.hpp"
+#endif
 
 namespace util
 {
@@ -15,7 +17,10 @@ namespace util
 // Exception hierarchy (Python-like exceptions mapped to C++)
 // Skipped: BaseExceptionGroup, GeneratorExit, KeyboardInterrupt, SystemExit (Python-specific)
 
+#ifndef DISABLE_STACK_TRACE
+
 class BaseException : public std::exception{
+
 public:
     BaseException() : std::exception(), m_message("") {
         m_stack.load_here();
@@ -32,8 +37,10 @@ public:
     const backward::StackTrace & stack() const {
         return m_stack;
     }
+    
 
     std::string detail() const{
+
         std::stringstream ss;
         ss << "error: " << m_message << std::endl;
 
@@ -42,11 +49,40 @@ public:
         p.print(m_stack, ss);
         return ss.str();
     }
- 
+
 protected:
     std::string m_message;
     backward::StackTrace m_stack;
 };
+
+#else
+
+class BaseException : public std::exception{
+
+public:
+    BaseException() : std::exception(), m_message("") {
+    }
+    BaseException(const std::string & msg): std::exception(), m_message(msg) {
+    }
+    virtual ~BaseException() = default;
+    
+    virtual const char* what() const noexcept {
+        return m_message.c_str();
+    }
+
+    std::string detail() const{
+
+        std::stringstream ss;
+        ss << "error: " << m_message << std::endl;
+        ss << "[WARNNING] if you want to print stack info, you should remove `DISABLE_STACK_TRACE` micro define." << std::endl;
+        return ss.str();
+    }
+ 
+protected:
+    std::string m_message;
+};
+
+#endif
 
 class Exception : public BaseException{
 public:

@@ -4,9 +4,11 @@
 #include <regex>
 #include <vector>
 #include <string>
+#include <sstream>
 #include <iomanip>
 #include <cstdint>
 #include <algorithm>
+#include <functional>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -21,9 +23,64 @@ namespace util
 
 template<typename... Args>
 inline std::string format(const std::string& fmt, const Args&... args) {
-    char buffer[2048];
-    std::sprintf(buffer, fmt.c_str(), args...);
-    return std::string(buffer);
+
+    int size = std::snprintf(nullptr, 0, fmt.c_str(), args...);
+    if (size <= 0) {
+        return "";
+    }
+
+    std::vector<char> buffer(size + 1);
+    std::snprintf(buffer.data(), buffer.size(), fmt.c_str(), args...);
+    return std::string(buffer.data());
+}
+
+
+template<class...Args>
+inline std::string joint(Args ... args){
+    std::ostringstream os;
+    int _[] = { (os<<args,0)...,};
+    return os.str();
+}
+
+
+template<class Iterator>
+inline std::string join(Iterator begin, Iterator end, const std::string separator){
+    std::ostringstream os;
+    while(begin != end){
+        os << *begin <<  separator;
+        begin++;
+    }
+
+    auto str = os.str();
+    if(str.empty() == false){
+        str = str.substr(0, str.size() - separator.size());
+    } 
+    return str;
+}
+
+template<class Iterator, typename Function = std::function<std::string (const Iterator &)>>
+inline std::string join(Iterator begin, Iterator end, const std::string separator, const Function & format ){
+    std::ostringstream os;
+    while(begin != end){
+        os << format(begin) <<  separator;
+        begin++;
+    }
+
+    auto str = os.str();
+    if(str.empty() == false){
+        str = str.substr(0, str.size() - separator.size());
+    } 
+    return str;
+}
+
+template<class Container>
+inline std::string join(const Container & container, const std::string separator){
+    return join(container.begin(), container.end(), separator);
+}
+
+template<class Container, typename Function>
+inline std::string join(const Container & container, const std::string separator, const Function & format){
+    return join(container.begin(), container.end(), separator, format);
 }
 
 inline std::wstring fromUtf8(const std::string & str) {
@@ -410,7 +467,7 @@ inline bool toNumber(const std::string& str, Number& value) {
     }
 }
 
-inline std::string dumpBinary(const uint8_t * pointer, size_t uLen){
+inline std::string dumpMemeory(const uint8_t * pointer, size_t uLen){
     size_t cursor = 0;
     std::ostringstream os;
     while (cursor < uLen)
@@ -447,8 +504,8 @@ inline std::string dumpBinary(const uint8_t * pointer, size_t uLen){
     return os.str();
 }
 
-inline std::string dumpBinary(const char * pointer, size_t uLen){
-    return dumpBinary(reinterpret_cast<const uint8_t*>(pointer), uLen);
+inline std::string dumpMemeory(const char * pointer, size_t uLen){
+    return dumpMemeory(reinterpret_cast<const uint8_t*>(pointer), uLen);
 }
 
 } // namespace util

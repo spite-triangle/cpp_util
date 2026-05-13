@@ -39,6 +39,8 @@ TEST_CASE("defer"){
 
 - **字符串格式化**
   - `format(fmt, ...)`：类似 `sprintf` 的格式化字符串。
+  - `joint`: 字符串拼接，支持 `iomanip` 
+  - `join`: 拼接数据
 - **编码转换**
   - `fromUtf8` / `toUtf8`：UTF-8 与宽字符串（`std::wstring`）互转。
   - `fromAnsi` / `toAnsi`：ANSI 与宽字符串互转。
@@ -57,7 +59,7 @@ TEST_CASE("defer"){
 - **字符串转数值**
   - `toNumber`：将字符串安全转换为各种数值类型。
 - **可视化**
-  - `dumpBinary`: 将二进制内存转换为字符串，便于调试
+  - `dumpMemeory`: 将二进制内存转换为字符串，便于调试
 
 ### 异常
 
@@ -116,6 +118,35 @@ BaseException
             ├── UnicodeEncodeError
             └── UnicodeTranslateError
 ```
+
+捕获到当异常时，可打印堆栈信息
+
+```cpp
+TEST_CASE("stack_exception"){
+
+    try{
+        fcn1(0,2);
+    }catch(const util::ValueError & e){
+        printf("%s", e.detail().c_str());
+    }
+}
+```
+
+```term
+triangle@LEARN:~$ ./demo
+error: xxx
+Stack trace (most recent call last):
+#4    Object "", at 0x3, in  ?? 
+#3    Object "", at 0x100000011, in  ?? 
+#2    Object "", at 0xddf09ff230, in  ?? 
+#1    Object "", at 0x25800000000, in  ?? 
+#0    Object "", at 0x7ff724fc03c5, in  ?? 
+```
+
+> [!note]
+> 堆栈信息使用 [backward-cpp]( https://github.com/bombela/backward-cpp) 库捕获
+> - `window` 需要依赖 `dbghelp` 库
+> - `linux` 需要依赖 `libunwind` 库
 
 ### optional
 

@@ -10,11 +10,32 @@ TEST_CASE("format")
     CHECK(format("%d + %d = %d", 1, 2, 3) == "1 + 2 = 3");
 }
 
+TEST_CASE("joint"){
+    CHECK(joint("0x", std::hex, 10) == "0xa");
+}
+
+TEST_CASE("join"){
+    std::vector<int> vecInt = {1,2,3,4};
+    CHECK(join(vecInt.begin(), vecInt.end(), ",") == "1,2,3,4");
+    CHECK(join(vecInt, ",") == "1,2,3,4");
+
+
+    CHECK(join(vecInt.begin(), vecInt.end(), ",", [](const  std::vector<int>::iterator  & item){
+        return *item + 1;
+    }) == "2,3,4,5");
+
+    std::vector<std::string> vecString = {"a","b","c"};
+    CHECK(join(vecString.begin(), vecString.end(), ",") == "a,b,c");
+    CHECK(join(vecString, ",") == "a,b,c");
+
+}
+
 TEST_CASE("toLower and toUpper")
 {
     CHECK(toLower("ABCdEf") == "abcdef");
     CHECK(toUpper("abcDef") == "ABCDEF");
 }
+
 
 TEST_CASE("startWith/endWith/contain")
 {
@@ -121,6 +142,6 @@ TEST_CASE("toNumber")
 
 TEST_CASE("binary")
 {
-    auto str = dumpBinary("abc", 3);
+    auto str = dumpMemeory("abc", 3);
     std::cout << str << std::endl;
 }

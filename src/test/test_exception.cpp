@@ -1,5 +1,6 @@
 #include "doctest.h"
 
+// #define DISABLE_STACK_TRACE
 
 #include "utils/all"
 
