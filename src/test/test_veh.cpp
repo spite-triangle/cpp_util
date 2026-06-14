@@ -50,6 +50,8 @@ inline void test_throw(){
 }
 
 inline void run(){
+
+    /* NOTE - 直接运行可能看不见终端打印信息，使用调试器或日志文件打印可看见输出 */
     util::CoreDump::instance()->registerExceptionFilter([](const _EXCEPTION_POINTERS *pInfo) {
         std::cout << "xxxx" << std::endl;
     });

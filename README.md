@@ -1,6 +1,8 @@
+<!-- fullWidth: false tocVisible: false tableWrap: true -->
 # 辅助工具
 
 `util.hpp` 是一个 C++ 实用工具头文件，适用于跨平台（Windows/Linux）开发
+
 - `defer` 资源释放
 - 字符串实用功能
 - 提供 `python like` 的内置异常
@@ -31,6 +33,7 @@ TEST_CASE("defer"){
     */
 }
 ```
+
 ### 通用工具
 
 - `util::Singleton`: 快速单列
@@ -39,7 +42,7 @@ TEST_CASE("defer"){
 
 - **字符串格式化**
   - `format(fmt, ...)`：类似 `sprintf` 的格式化字符串。
-  - `joint`: 字符串拼接，支持 `iomanip` 
+  - `joint`: 字符串拼接，支持 `iomanip`
   - `join`: 拼接数据
 - **编码转换**
   - `fromUtf8` / `toUtf8`：UTF-8 与宽字符串（`std::wstring`）互转。
@@ -144,7 +147,8 @@ Stack trace (most recent call last):
 ```
 
 > [!note]
-> 堆栈信息使用 [backward-cpp]( https://github.com/bombela/backward-cpp) 库捕获
+> 堆栈信息使用 [backward-cpp](https://github.com/bombela/backward-cpp) 库捕获
+>
 > - `window` 需要依赖 `dbghelp` 库
 > - `linux` 需要依赖 `libunwind` 库
 
@@ -214,7 +218,15 @@ TEST_CASE("cancellation_parallel"){
 }
 ```
 
+## VEH
+
+通过 `util::CoreDump` 可实现 `windows` 的`VEH`(结构化异常)的全路径异常捕获，用于生成 `dump` 文件追踪异常。
+
+- 只适用于 `windows` 
+- 新建的线程**可能需要**在入口函数中再次注册 `registerExceptionFilter`，确保能正确捕获到异常信息
+
 ## 平台支持
+
 - Windows：使用 Windows API 进行编码转换。
 - Linux：使用 iconv 进行编码转换。
 
@@ -240,6 +252,7 @@ int main() {
 ```
 
 ## 依赖
+
 - `c++11` 及以上
 - Windows: `<windows.h>`
 - Linux: `<iconv.h>`
