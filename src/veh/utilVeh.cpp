@@ -157,24 +157,33 @@ int CoreDump::registerFailureHandler(const FcnHanle_t & fcn){
         return -1;
     }
     HookSignal();
-    m_fcnHandle = fcn;
+
+    if(fcn){
+        m_fcnHandle = fcn;
+    }
     return 0;
 }
 
 int CoreDump::registerExceptionFilter(const FcnFilter_t & fcn){
     AddVectoredContinueHandler(0, ExceptionFilter);
-    m_fcnFilter = fcn;
+    if(fcn){
+        m_fcnFilter = fcn;
+    }
     return 0;
 }
 
 void CoreDump::_handle(const FAILURE_ERROR_E &enType)
 {
-    m_fcnHandle(enType);
+    if(m_fcnHandle){
+        m_fcnHandle(enType);
+    }
 }
 
 void CoreDump::_filter(const _EXCEPTION_POINTERS *pInfo)
 {
-    m_fcnFilter(pInfo);
+    if(m_fcnFilter){
+        m_fcnFilter(pInfo);
+    }
 }
 
 } // namespace util

@@ -264,7 +264,7 @@ inline std::string toUpper(const std::string& str) {
 }
 
 inline bool startWith(const std::string& str, const std::string& prefix, bool caseSensitive = true) {
-    if (prefix.empty()) return false;
+    if (prefix.empty()) return true;
     if (str.length() < prefix.length()) return false;
 
     std::string cmpStr = str.substr(0, prefix.length());
@@ -288,7 +288,7 @@ inline bool startWith(const std::string& str, const std::regex& regex, bool case
 }
 
 inline bool endWith(const std::string& str, const std::string& suffix, bool caseSensitive = true) {
-    if (suffix.empty()) return false;
+    if (suffix.empty()) return true;
     if (str.length() < suffix.length()) return false;
     
     std::string cmpStr = str.substr(str.length() - suffix.length());
@@ -323,7 +323,7 @@ inline bool endWith(const std::string& str, const std::regex& regex, bool caseSe
 
 
 inline bool contain(const std::string& str, const std::string & target, bool caseSensitive = true) {
-    if (target.empty()) return false;
+    if (target.empty()) return true;
     if (caseSensitive) {
         return str.find(target) != std::string::npos;
     } else {

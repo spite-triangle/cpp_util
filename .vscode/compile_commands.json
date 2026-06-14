@@ -1,36 +1,36 @@
 [
 {
-  "directory": "d:\\notebooks\\cpp_util",
-  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\debug\\src\\main.cpp.obj", "src\\main.cpp"],
+  "directory": "e:\\workspace\\cpp_util",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\=debug\\src\\main.cpp.obj", "src\\main.cpp"],
   "file": "src\\main.cpp"
 },
 {
-  "directory": "d:\\notebooks\\cpp_util",
-  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\debug\\src\\test\\test_cancellation.cpp.obj", "src\\test\\test_cancellation.cpp"],
+  "directory": "e:\\workspace\\cpp_util",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\=debug\\src\\test\\test_cancellation.cpp.obj", "src\\test\\test_cancellation.cpp"],
   "file": "src\\test\\test_cancellation.cpp"
 },
 {
-  "directory": "d:\\notebooks\\cpp_util",
-  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\debug\\src\\test\\test_exception.cpp.obj", "src\\test\\test_exception.cpp"],
+  "directory": "e:\\workspace\\cpp_util",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\=debug\\src\\test\\test_exception.cpp.obj", "src\\test\\test_exception.cpp"],
   "file": "src\\test\\test_exception.cpp"
 },
 {
-  "directory": "d:\\notebooks\\cpp_util",
-  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\debug\\src\\test\\test_macro.cpp.obj", "src\\test\\test_macro.cpp"],
+  "directory": "e:\\workspace\\cpp_util",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\=debug\\src\\test\\test_macro.cpp.obj", "src\\test\\test_macro.cpp"],
   "file": "src\\test\\test_macro.cpp"
 },
 {
-  "directory": "d:\\notebooks\\cpp_util",
-  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\debug\\src\\test\\test_optional.cpp.obj", "src\\test\\test_optional.cpp"],
+  "directory": "e:\\workspace\\cpp_util",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\=debug\\src\\test\\test_optional.cpp.obj", "src\\test\\test_optional.cpp"],
   "file": "src\\test\\test_optional.cpp"
 },
 {
-  "directory": "d:\\notebooks\\cpp_util",
-  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\debug\\src\\test\\test_queue.cpp.obj", "src\\test\\test_queue.cpp"],
+  "directory": "e:\\workspace\\cpp_util",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\=debug\\src\\test\\test_queue.cpp.obj", "src\\test\\test_queue.cpp"],
   "file": "src\\test\\test_queue.cpp"
 },
 {
-  "directory": "d:\\notebooks\\cpp_util",
-  "arguments": ["D:\\Program files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\debug\\src\\test\\test_string.cpp.obj", "src\\test\\test_string.cpp"],
+  "directory": "e:\\workspace\\cpp_util",
+  "arguments": ["D:\\Program Files\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe", "-c", "-Isrc", "-fexceptions", "-O0", "-g", "-std=c++11", "-o", "build\\.objs\\test\\windows\\x64\\=debug\\src\\test\\test_string.cpp.obj", "src\\test\\test_string.cpp"],
   "file": "src\\test\\test_string.cpp"
 }]
